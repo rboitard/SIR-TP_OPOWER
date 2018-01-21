@@ -5,17 +5,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class SmartDivices {
+public class SmartDevices {
 
     private int ID;
     private String name;
 
 
-    public SmartDivices(String name) {
+    public SmartDevices(String name) {
         this.name = name;
     }
 
-    public SmartDivices() {
+    public SmartDevices() {
         this.name = "";
     }
 

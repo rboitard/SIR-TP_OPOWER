@@ -15,13 +15,13 @@ public class Person {
     private String email;
     private int ID;
     private List<Home> homes;
-    private List<ElectronicDivice>  electronicDivices;
+    private List<ElectronicDevice>  electronicDivices;
 
 
     public Person()
     {
         this.homes  = new ArrayList<Home>();
-        this. electronicDivices =  new ArrayList<ElectronicDivice>();
+        this. electronicDivices =  new ArrayList<ElectronicDevice>();
         this.name ="";
         this.prenom="";
         this.email = "";
@@ -31,7 +31,7 @@ public class Person {
     public Person(String nom, String prenom, String email) {
 
         this.homes = new ArrayList<Home>();
-        this. electronicDivices =  new ArrayList<ElectronicDivice>();
+        this. electronicDivices =  new ArrayList<ElectronicDevice>();
         this.name = nom;
         this.prenom = prenom;
         this.email = email;
@@ -75,11 +75,11 @@ public class Person {
     }
 
     @OneToMany(mappedBy = "person")
-    public List<ElectronicDivice> getElectronicDivices() {
+    public List<ElectronicDevice> getElectronicDivices() {
         return electronicDivices;
     }
 
-    public void setElectronicDivices(List<ElectronicDivice> electronicDivices) {
+    public void setElectronicDivices(List<ElectronicDevice> electronicDivices) {
         this.electronicDivices = electronicDivices;
     }
 

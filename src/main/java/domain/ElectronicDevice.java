@@ -1,21 +1,19 @@
 package domain;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class ElectronicDivice extends SmartDivices{
+public class ElectronicDevice extends SmartDevices {
 
     private int  ConsommationMoyenne;
     private Person person;
 
-    public ElectronicDivice(int consommationMoyenne) {
+    public ElectronicDevice(int consommationMoyenne) {
         ConsommationMoyenne = consommationMoyenne;
     }
 
-    public ElectronicDivice() {
+    public ElectronicDevice() {
         ConsommationMoyenne = 0;
     }
 

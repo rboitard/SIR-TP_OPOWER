@@ -12,6 +12,7 @@ public class Home {
     private int nbP ;
     private Person person;
     private List<Heater> heaters;
+    private String name;
 
     public Home(int taille, int nbP, Person person) {
         this.taille = taille;
@@ -49,6 +50,14 @@ public class Home {
         this.nbP = nbP;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @ManyToOne
     public Person getPerson() {
         return person;
@@ -69,6 +78,10 @@ public class Home {
 
     public void setID(int ID) {
         this.ID = ID;
+    }
+
+    public void addDevice(Heater heater){
+        this.heaters.add(heater);
     }
 
     @Override
