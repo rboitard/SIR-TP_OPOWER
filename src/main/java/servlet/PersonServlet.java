@@ -16,7 +16,7 @@ import java.util.Iterator;
 /**
  * Created by 14005744 on 15/01/2018.
  */
-@WebServlet(name="personInfo", urlPatterns={"/person"})
+@WebServlet(name="personInfo", urlPatterns={"/personServlet"})
 public class PersonServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
