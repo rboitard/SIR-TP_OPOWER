@@ -64,10 +64,10 @@ public class Person {
         return ID;
     }
 
-    @OneToMany(mappedBy = "person")
-    public List<Home> getHomes() {
+
+   /* public List<Home> getHomes() {
         return homes;
-    }
+    }*/
 
 
     public void setHomes(List<Home> homes) {
