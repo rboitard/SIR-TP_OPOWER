@@ -26,7 +26,7 @@ public class PersonWebService {
     public Response addPerson(@FormParam("nom") String nom, @FormParam("prenom") String prenom, @FormParam("email") String email){
         Person p = new Person(nom, prenom, email);
         daoP.create(p);
-        return Response.status(200).entity("addPerson is called, name : " + nom + ", prenom : " + prenom + ", email" + email).build();
+        return Response.status(200).entity("addPerson is called, name : " + nom + ", prenom : " + prenom + ", email :" + email).build();
     }
 
     @DELETE
