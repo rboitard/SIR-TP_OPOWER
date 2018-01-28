@@ -1,9 +1,6 @@
 package domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +20,7 @@ public class Person {
         this.homes  = new ArrayList<Home>();
         this. electronicDivices =  new ArrayList<ElectronicDevice>();
         this.name ="";
-        this.prenom="";
+        this.prenom ="";
         this.email = "";
 
     }
@@ -65,9 +62,10 @@ public class Person {
     }
 
 
-   /* public List<Home> getHomes() {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "person" )
+    public List<Home> getHomes() {
         return homes;
-    }*/
+    }
 
 
     public void setHomes(List<Home> homes) {
