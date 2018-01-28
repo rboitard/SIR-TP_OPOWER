@@ -10,18 +10,20 @@ public class Home {
     private int ID;
     private  int taille;
     private int nbP ;
+    private Person person;
     private List<Heater> heaters;
-    private String name;
 
-    public Home(int taille, int nbP, Person person) {
+    public Home(int taille, int nbP) {
         this.taille = taille;
         this.nbP = nbP;
+        this.person = new Person();
         this.heaters =  new ArrayList<Heater>();
     }
 
     public Home() {
         this.taille = 0;
         this.nbP = 0;
+        this.person = new Person();
         this.heaters =  new ArrayList<Heater>();
     }
 
@@ -47,12 +49,15 @@ public class Home {
         this.nbP = nbP;
     }
 
-    public String getName() {
-        return name;
+
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    public Person getPerson() {
+        return person;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     @OneToMany(mappedBy = "home")
@@ -62,6 +67,11 @@ public class Home {
 
     public void setHeaters(List<Heater> heaters) {
         this.heaters = heaters;
+    }
+
+    public void addHeater(Heater heater)
+    {
+        this.heaters.add(heater);
     }
 
     public void setID(int ID) {
@@ -78,6 +88,7 @@ public class Home {
                 "ID=" + ID +
                 ", taille=" + taille +
                 ", nbP=" + nbP +
+                ", person=" + "" +
                 '}';
     }
 }
