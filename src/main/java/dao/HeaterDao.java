@@ -10,7 +10,7 @@ import javax.persistence.Persistence;
 public class HeaterDao {
     public Heater create(Heater heater){
 
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("mysql");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
         EntityManager manager = factory.createEntityManager();
         EntityTransaction tx = manager.getTransaction();
         tx.begin();
@@ -22,7 +22,7 @@ public class HeaterDao {
     }
 
     public Heater read(int id) {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("mysql");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
         EntityManager manager = factory.createEntityManager();
         Heater heater = manager.find(Heater.class, id);
         manager.close();
@@ -34,7 +34,7 @@ public class HeaterDao {
 
 
     public Heater update(Heater heater) {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("mysql");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
         EntityManager manager = factory.createEntityManager();
         EntityTransaction tx = manager.getTransaction();
         tx.begin();
@@ -49,7 +49,7 @@ public class HeaterDao {
 
 
     public void delete(Heater heater) {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("mysql");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
         EntityManager manager = factory.createEntityManager();
         manager.remove(heater);
         manager.flush();

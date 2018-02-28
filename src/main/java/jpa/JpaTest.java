@@ -24,7 +24,7 @@ public class JpaTest {
      * @param args
      */
     public static void main(String[] args) {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("mysql");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
         EntityManager manager = factory.createEntityManager();
         EntityTransaction tx = manager.getTransaction();
         tx.begin();

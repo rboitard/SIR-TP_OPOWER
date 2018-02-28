@@ -36,7 +36,7 @@ public class PersonDao {
 
 
     public Person update(Person p) {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("mysql");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
         EntityManager manager = factory.createEntityManager();
         EntityTransaction tx = manager.getTransaction();
         tx.begin();
@@ -51,7 +51,7 @@ public class PersonDao {
 
 
     public void delete(Person p) {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("mysql");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
         EntityManager manager = factory.createEntityManager();
         manager.remove(p);
         manager.flush();
