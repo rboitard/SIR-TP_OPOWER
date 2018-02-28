@@ -6,6 +6,8 @@ import domain.Home;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Collection;
+import java.util.Iterator;
 
 @Path("/home")
 public class HomeService {
@@ -33,5 +35,19 @@ public class HomeService {
     public Response deleteHome(@PathParam("id") int id){
         daoHome.delete(daoHome.read(id));
         return Response.status(200).entity("deleteHome is called").build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllhomes() {
+        Collection<Home> homes = daoHome.getAllHome();
+        String res=" ";
+        Iterator<Home> iterator = homes.iterator();
+        while (iterator.hasNext())
+        {
+            Home home = iterator.next();
+            res += "taille : "+ home.getTaille() + ", nombre de personnes : " + home.getNbP()+ "\n";
+        }
+        return Response.status(200).entity(res).build();
     }
 }

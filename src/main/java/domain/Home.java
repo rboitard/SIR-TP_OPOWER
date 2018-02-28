@@ -88,7 +88,6 @@ public class Home {
                 "ID=" + ID +
                 ", taille=" + taille +
                 ", nbP=" + nbP +
-                ", person=" + "" +
                 '}';
     }
 }
