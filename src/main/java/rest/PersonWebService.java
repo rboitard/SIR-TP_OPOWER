@@ -36,7 +36,4 @@ public class PersonWebService {
         daoP.delete(daoP.read(id));
         return Response.status(200).entity("deletePerson is called").build();
     }
-
-
-
 }

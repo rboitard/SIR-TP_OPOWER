@@ -19,7 +19,7 @@ public class SampleWebService {
     @Produces(MediaType.APPLICATION_JSON)
     public Home getHome() {
         Home h = new Home();
-        h.setName("toto");
+        //h.setName("toto");
         Heater h1 = new Heater();
         h1.setPower("500w");
         Heater h2 = new Heater();
