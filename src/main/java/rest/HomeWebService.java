@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 @Path("/home")
-public class HomeService {
+public class HomeWebService {
 
     private HomeDao daoHome = new HomeDao();
 
