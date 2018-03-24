@@ -8,6 +8,8 @@ import domain.Person;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Collection;
+import java.util.Iterator;
 
 @Path("/person")
 public class PersonWebService {
@@ -36,4 +38,21 @@ public class PersonWebService {
         daoP.delete(daoP.read(id));
         return Response.status(200).entity("deletePerson is called").build();
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllhomes() {
+        Collection<Person> personCollection = daoP.getAllPerson();
+        String res="";
+        Iterator<Person> iterator = personCollection.iterator();
+        while (iterator.hasNext())
+        {
+            Person person = iterator.next();
+            res += "name : "+ person.getName() + ", FirstNmae : " +person.getPrenom()+", email :  "+person.getEmail()+ "\n";
+        }
+        return Response.status(200).entity(res).build();
+    }
+
+
+
 }

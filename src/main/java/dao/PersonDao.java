@@ -1,18 +1,17 @@
 package dao;
 
+import domain.Home;
 import domain.Person;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
+import java.util.Collection;
 import java.util.Iterator;
 
 public class PersonDao {
 
 
     public Person create(Person p){
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("mysql");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
         EntityManager manager = factory.createEntityManager();
         EntityTransaction tx = manager.getTransaction();
         tx.begin();
@@ -24,7 +23,7 @@ public class PersonDao {
     }
 
     public Person read(int id) {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("mysql");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
         EntityManager manager = factory.createEntityManager();
         Person person = manager.find(Person.class, id);
         manager.close();
@@ -57,5 +56,15 @@ public class PersonDao {
         manager.flush();
         manager.close();
         factory.close();
+    }
+
+    public Collection<Person> getAllPerson() {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
+        EntityManager manager = factory.createEntityManager();
+        Query query = manager.createQuery("SELECT e FROM Person e");
+        Collection<Person> personCollection =  query.getResultList();
+        manager.close();
+        factory.close();
+        return personCollection;
     }
 }

@@ -29,6 +29,14 @@ public class HomeWebService {
         return Response.status(200).entity("AddHome is called, taille : " + taille + ", nombre de personnes : " + nbP ).build();
     }
 
+    @PUT
+
+    public Response update( @FormParam("taille") int taille, @FormParam("nbP") int nbP){
+        Home home = new Home(taille, nbP);
+        daoHome.update(home);
+        return Response.status(200).entity("Update is called, taille : " + taille + ", nombre de personnes : " + nbP ).build();
+    }
+
     @DELETE
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)

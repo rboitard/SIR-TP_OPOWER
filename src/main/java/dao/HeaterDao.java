@@ -46,8 +46,6 @@ public class HeaterDao {
 
     }
 
-
-
     public void delete(Heater heater) {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
         EntityManager manager = factory.createEntityManager();

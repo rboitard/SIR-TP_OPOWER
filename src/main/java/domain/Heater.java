@@ -8,7 +8,6 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Heater extends SmartDevices {
 
-    private int ID;
 
     private Home home;
 
@@ -18,11 +17,7 @@ public class Heater extends SmartDevices {
         this.home = new Home();
     }
 
-    @Id
-    @GeneratedValue
-    public int getID() {
-        return ID;
-    }
+
 
     @ManyToOne
     public Home getHome() {
@@ -41,8 +36,6 @@ public class Heater extends SmartDevices {
         this.power = power;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+
 
 }
