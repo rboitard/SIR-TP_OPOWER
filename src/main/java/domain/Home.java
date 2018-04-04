@@ -51,7 +51,7 @@ public class Home  {
         this.nbP = nbP;
     }
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     public Person getPerson() {
         return person;
     }

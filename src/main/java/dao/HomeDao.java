@@ -45,10 +45,6 @@ public class HomeDao {
         EntityManager manager = factory.createEntityManager();
         EntityTransaction tx = manager.getTransaction();
         tx.begin();
-        System.out.println("id :" + homeId);
-        System.out.println("taille :" + _home.getNbP());
-        System.out.println("nbp :" + _home.getTaille());
-
         Home home = manager.find(Home.class,homeId);
         if(manager.contains(home)){
             home.setTaille(_home.getTaille());
@@ -64,8 +60,6 @@ public class HomeDao {
         return home;
 
     }
-
-
 
     public Home delete(int homeId) {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
