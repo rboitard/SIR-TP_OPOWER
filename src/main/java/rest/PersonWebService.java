@@ -25,6 +25,8 @@ public class PersonWebService {
     }
 
     @POST
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public Response addPerson(@FormParam("nom") String nom, @FormParam("prenom") String prenom, @FormParam("email") String email){
         Person p = new Person(nom, prenom, email);
         daoP.create(p);

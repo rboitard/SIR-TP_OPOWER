@@ -1,11 +1,13 @@
 package domain;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Home {
+public class Home  {
 
     private int ID;
     private  int taille;
@@ -49,8 +51,6 @@ public class Home {
         this.nbP = nbP;
     }
 
-
-
     @ManyToOne(cascade = CascadeType.PERSIST)
     public Person getPerson() {
         return person;
@@ -60,6 +60,7 @@ public class Home {
         this.person = person;
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "home")
     public List<Heater> getHeaters() {
         return heaters;

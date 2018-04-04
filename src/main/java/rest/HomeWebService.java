@@ -6,8 +6,6 @@ import domain.Home;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Collection;
-import java.util.Iterator;
 
 @Path("/home")
 public class HomeWebService {
@@ -18,44 +16,39 @@ public class HomeWebService {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getHome(@PathParam("id") int id) {
-        Home home = daoHome.read(id);
-        return Response.status(200).entity("taille : " + home.getTaille() + "nombre de pièces : " + home.getNbP()).build();
+        Home home =daoHome.read(id);
+        return response(home);
     }
 
     @POST
-    public Response addHome(@FormParam("taille") int taille, @FormParam("nbP") int nbP){
-        Home home = new Home(taille, nbP);
-        daoHome.create(home);
-        return Response.status(200).entity("AddHome is called, taille : " + taille + ", nombre de personnes : " + nbP ).build();
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response addHome(Home home){
+        return this.response(daoHome.create(home));
     }
 
     @PUT
-
-    public Response update( @FormParam("taille") int taille, @FormParam("nbP") int nbP){
-        Home home = new Home(taille, nbP);
-        daoHome.update(home);
-        return Response.status(200).entity("Update is called, taille : " + taille + ", nombre de personnes : " + nbP ).build();
+    @Path("/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response update(@PathParam("id") int id,  Home home){
+       return response(daoHome.update(id, home)) ;
     }
 
     @DELETE
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response deleteHome(@PathParam("id") int id){
-        daoHome.delete(daoHome.read(id));
-        return Response.status(200).entity("deleteHome is called").build();
+    public void deleteHome(@PathParam("id") int id){
+        daoHome.delete(id);
     }
 
+
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllhomes() {
-        Collection<Home> homes = daoHome.getAllHome();
-        String res=" ";
-        Iterator<Home> iterator = homes.iterator();
-        while (iterator.hasNext())
-        {
-            Home home = iterator.next();
-            res += "taille : "+ home.getTaille() + ", nombre de personnes : " + home.getNbP()+ "\n";
-        }
-        return Response.status(200).entity(res).build();
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response homes() {
+        return this.response(this.daoHome.getAllHome());
+    }
+
+    private Response response(Object o) {
+        return Response.ok(o).build();
     }
 }

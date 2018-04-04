@@ -29,28 +29,36 @@ public class HomeDao {
         manager.close();
         factory.close();
         return home;
-
     }
 
-    public Collection<Home> getAllHome() {
+    public List<Home> getAllHome() {
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
         EntityManager manager = factory.createEntityManager();
-        Query query = manager.createQuery("SELECT e FROM Home e");
-         Collection<Home> homes=  query.getResultList();
-        manager.close();
-        factory.close();
-        return homes;
+        return  manager.createQuery("SELECT e FROM Home e").getResultList();
     }
 
 
 
-    public Home update(Home home) {
+    public Home update(int homeId, Home _home) {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
         EntityManager manager = factory.createEntityManager();
         EntityTransaction tx = manager.getTransaction();
         tx.begin();
-        manager.merge(home);
-        tx.commit();
+        System.out.println("id :" + homeId);
+        System.out.println("taille :" + _home.getNbP());
+        System.out.println("nbp :" + _home.getTaille());
+
+        Home home = manager.find(Home.class,homeId);
+        if(manager.contains(home)){
+            home.setTaille(_home.getTaille());
+            home.setNbP(_home.getNbP());
+            manager.merge(home);
+            tx.commit();
+        }
+        else {
+            System.out.println("id undefined");
+        }
         manager.close();
         factory.close();
         return home;
@@ -59,12 +67,16 @@ public class HomeDao {
 
 
 
-    public void delete(Home home) {
+    public Home delete(int homeId) {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
         EntityManager manager = factory.createEntityManager();
+        EntityTransaction tx = manager.getTransaction();
+        tx.begin();
+        Home home = manager.find(Home.class,homeId);
         manager.remove(home);
-        manager.flush();
+        tx.commit();
         manager.close();
         factory.close();
+        return home;
     }
 }

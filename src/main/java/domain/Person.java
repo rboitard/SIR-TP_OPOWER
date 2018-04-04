@@ -1,5 +1,7 @@
 package domain;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +64,7 @@ public class Person {
     }
 
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "person" )
     public List<Home> getHomes() {
         return homes;
@@ -72,6 +75,7 @@ public class Person {
         this.homes = homes;
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "person")
     public List<ElectronicDevice> getElectronicDivices() {
         return electronicDivices;
